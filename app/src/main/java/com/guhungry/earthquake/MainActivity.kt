@@ -2,34 +2,30 @@ package com.guhungry.earthquake
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.androidnetworking.error.ANError
-import com.androidnetworking.interfaces.JSONObjectRequestListener
+import android.widget.Toast
 import com.guhungry.earthquake.adapters.QuakeAdapter
-import com.guhungry.earthquake.data.QuakeRepository
 import com.guhungry.earthquake.models.QuakeModel
-import com.guhungry.earthquake.utils.QueryUtils
+import com.guhungry.earthquake.quakelist.QuakeListProtocol
+import com.guhungry.earthquake.quakelist.QuakeListRouter
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
-    private var adapter : QuakeAdapter? = null
+class MainActivity : AppCompatActivity(), QuakeListProtocol.View {
+    override var presenter: QuakeListProtocol.Presenter? = null
+    private var adapter: QuakeAdapter? = null
 
+    // ////////////////////
+    // Life Cycle Functions
+    // ////////////////////
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupPresenter()
         setupQuakeList()
+    }
 
-        QuakeRepository.getQuakes()?.getAsJSONObject(object : JSONObjectRequestListener {
-            override fun onResponse(response: JSONObject) {
-                println(response)
-                updateQuakes(QueryUtils.extractQuakes(response))
-            }
-
-            override fun onError(error: ANError) {
-                println(error)
-            }
-        })
+    private fun setupPresenter() {
+        presenter = QuakeListRouter.presenter(this)
     }
 
     private fun setupQuakeList() {
@@ -37,9 +33,28 @@ class MainActivity : AppCompatActivity() {
         list_quake.adapter = adapter
     }
 
-    fun updateQuakes(quakes: ArrayList<QuakeModel>) {
+    override fun onStart() {
+        super.onStart()
+
+        presenter?.requestQuakes()
+    }
+
+    override fun onDestroy() {
+        adapter = null
+        presenter = null
+        super.onDestroy()
+    }
+
+    // //////////////
+    // View Interface
+    // //////////////
+    override fun onQuakesSuccess(quakes: ArrayList<QuakeModel>) {
         adapter?.clear()
         adapter?.addAll(quakes.toMutableList())
         adapter?.notifyDataSetChanged()
+    }
+
+    override fun onQuakesFailed() {
+        Toast.makeText(this, "Can't load quake data", Toast.LENGTH_LONG).show()
     }
 }
