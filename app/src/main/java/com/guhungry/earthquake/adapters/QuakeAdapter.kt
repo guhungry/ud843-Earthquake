@@ -17,7 +17,9 @@ class QuakeAdapter(context: Context, list: ArrayList<QuakeModel>, private val vi
         val data = getItem(position)
 
         view.setTag(data)
-        view.magnitude.text = data.magnitude.toString()
+        view.magnitude.text = data.displayMagnitide()
+        view.place_of.text = data.placeOf
+        view.place_main.text = data.placeMain
         view.date.text = data.displayDate()
         view.time.text = data.displayTime()
         return view

@@ -32,6 +32,6 @@ abstract class QuakeListProtocol {
     }
 
     interface Router {
-        fun presenter(view: View) : QuakeListProtocol.Presenter
+        fun presenter(view: View): QuakeListProtocol.Presenter
     }
 }

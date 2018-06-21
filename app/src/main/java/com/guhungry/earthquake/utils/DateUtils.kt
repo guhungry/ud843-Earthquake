@@ -8,9 +8,6 @@ class DateUtils {
         const val FORMAT_DATE_MMMDDYYY = "MMM d, yyyy"
         const val FORMAT_DATE_HMA = "h:m a"
 
-        fun formatDate(date: Date, format: String): String {
-            val formatter = SimpleDateFormat(format, Locale.US)
-            return formatter.format(date)
-        }
+        fun format(date: Date, format: String) = SimpleDateFormat(format, Locale.US).format(date)
     }
 }

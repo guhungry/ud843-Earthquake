@@ -29,7 +29,7 @@ class QueryUtils {
         fun extractQuake(json: JSONObject): QuakeModel {
             val props = json.optJSONObject("properties") ?: JSONObject()
             return QuakeModel(
-                    magnitude = props.optDouble("magnitude", 0.0),
+                    magnitude = props.optDouble("mag", 0.0),
                     place = props.optString("place", ""),
                     time = Date(props.optLong("time", 0))
             )

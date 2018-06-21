@@ -13,6 +13,7 @@ class QuakeListPresenter : QuakeListProtocol.Presenter, QuakeListProtocol.Intera
     override fun requestQuakes() {
         interactor?.requestQuakes()
     }
+
     override fun destroy() {
         view = null
         interactor = null
