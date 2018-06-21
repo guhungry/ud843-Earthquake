@@ -1,7 +1,7 @@
 package com.guhungry.earthquake
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.guhungry.earthquake.adapters.QuakeAdapter
 import com.guhungry.earthquake.models.QuakeModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,6 +16,6 @@ class MainActivity : AppCompatActivity() {
                 QuakeModel(magnitude = 2.5, place = "Bang Rak Noi", time = 200000),
                 QuakeModel(magnitude = 3.5, place = "LA", time = 300000)
         )
-        list_quake.adapter = QuakeAdapter(this, R.layout.quake_list_item, list)
+        list_quake.adapter = QuakeAdapter(this, list)
     }
 }
