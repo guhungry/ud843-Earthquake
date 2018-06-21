@@ -1,6 +1,8 @@
 package com.guhungry.earthquake.adapters
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +20,16 @@ class QuakeAdapter(context: Context, list: ArrayList<QuakeModel>, private val vi
 
         view.setTag(data)
         view.magnitude.text = data.displayMagnitide()
+        updateBackGroundCollor(view.magnitude, data.magnitudeColor())
         view.place_of.text = data.placeOf
         view.place_main.text = data.placeMain
         view.date.text = data.displayDate()
         view.time.text = data.displayTime()
         return view
+    }
+
+    private fun updateBackGroundCollor(view: View, color: Int) {
+        val background = view.background as GradientDrawable
+        background.setColor(ContextCompat.getColor(context, color))
     }
 }

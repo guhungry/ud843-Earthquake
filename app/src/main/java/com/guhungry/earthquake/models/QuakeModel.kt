@@ -1,5 +1,6 @@
 package com.guhungry.earthquake.models
 
+import com.guhungry.earthquake.R
 import com.guhungry.earthquake.utils.DateUtils
 import com.guhungry.earthquake.utils.NumberUtils
 import java.util.*
@@ -27,4 +28,18 @@ data class QuakeModel(private val place: String, val magnitude: Double, val time
     fun displayMagnitide() = NumberUtils.format(magnitude, "0.0")
     fun displayDate() = DateUtils.format(time, DateUtils.FORMAT_DATE_MMMDDYYY)
     fun displayTime() = DateUtils.format(time, DateUtils.FORMAT_DATE_HMA)
+    fun magnitudeColor(): Int {
+        return when (Math.floor(magnitude).toInt()) {
+            in 0..1 -> R.color.magnitude1
+            2 -> R.color.magnitude2
+            3 -> R.color.magnitude3
+            4 -> R.color.magnitude4
+            5 -> R.color.magnitude5
+            6 -> R.color.magnitude6
+            7 -> R.color.magnitude7
+            8 -> R.color.magnitude8
+            9 -> R.color.magnitude9
+            else -> R.color.magnitude10plus
+        }
+    }
 }
