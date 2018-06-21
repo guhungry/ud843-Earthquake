@@ -41,13 +41,17 @@
             android:id="@+id/place_of"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Of" />
+            android:text="Of"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/place_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Place" />
+            android:text="Place"
+            android:textColor="@color/textColorEarthquakeLocation"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,12 +70,16 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date" />
+            android:text="Date"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time" />
+            android:text="Time"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
