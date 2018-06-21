@@ -7,21 +7,23 @@ import java.util.*
 
 class QueryUtils {
     companion object {
-        fun extractQuakes(json: String): Array<QuakeModel> {
-            val result = mutableListOf<QuakeModel>()
-
+        fun extractQuakes(json: String): ArrayList<QuakeModel> {
             try {
-                val quakes = JSONObject(json).optJSONArray("features")
-                for (i in 0 until quakes.length()) {
-                    println(quakes.optJSONObject(i))
-                    result.add(extractQuake(json = quakes.optJSONObject(i) ?: JSONObject()))
-                }
-
+                return extractQuakes(JSONObject(json))
             } catch (e: JSONException) {
-                println(e)
+                return arrayListOf()
             }
+        }
 
-            return result.toTypedArray()
+        fun extractQuakes(json: JSONObject): ArrayList<QuakeModel> {
+            val result = arrayListOf<QuakeModel>()
+            val quakes = json.optJSONArray("features")
+
+            for (i in 0 until quakes.length()) {
+                println(quakes.optJSONObject(i))
+                result.add(extractQuake(json = quakes.optJSONObject(i) ?: JSONObject()))
+            }
+            return result
         }
 
         fun extractQuake(json: JSONObject): QuakeModel {
