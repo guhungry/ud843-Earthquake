@@ -9,7 +9,7 @@ import com.guhungry.earthquake.R
 import com.guhungry.earthquake.models.QuakeModel
 import kotlinx.android.synthetic.main.quake_list_item.view.*
 
-class QuakeAdapter(context: Context, list: Array<QuakeModel>, private val viewId: Int = R.layout.quake_list_item) : ArrayAdapter<QuakeModel>(context, viewId, list) {
+class QuakeAdapter(context: Context, list: ArrayList<QuakeModel>, private val viewId: Int = R.layout.quake_list_item) : ArrayAdapter<QuakeModel>(context, viewId, list) {
     private val inflater = LayoutInflater.from(context)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

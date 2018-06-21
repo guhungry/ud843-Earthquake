@@ -3,10 +3,12 @@ package com.guhungry.earthquake
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.guhungry.earthquake.adapters.QuakeAdapter
+import com.guhungry.earthquake.models.QuakeModel
 import com.guhungry.earthquake.utils.QueryUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private var adapter : QuakeAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,6 +24,14 @@ class MainActivity : AppCompatActivity() {
                 "{\"type\":\"Feature\",\"properties\":{\"mag\":6.9,\"place\":\"74km SE of Mawlaik, Burma\",\"time\":1460555717870,\"updated\":1460651201046,\"tz\":390,\"url\":\"http://earthquake.usgs.gov/earthquakes/eventpage/us20005hqz\",\"detail\":\"http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us20005hqz.geojson\",\"felt\":286,\"cdi\":5.9,\"mmi\":5.9,\"alert\":\"yellow\",\"status\":\"reviewed\",\"tsunami\":0,\"sig\":901,\"net\":\"us\",\"code\":\"20005hqz\",\"ids\":\",us20005hqz,gcmt20160413135517,\",\"sources\":\",us,gcmt,\",\"types\":\",cap,dyfi,general-text,geoserve,losspager,moment-tensor,nearby-cities,origin,phase-data,shakemap,tectonic-summary,\",\"nst\":null,\"dmin\":3.684,\"rms\":1.17,\"gap\":23,\"magType\":\"mwb\",\"type\":\"earthquake\",\"title\":\"M 6.9 - 74km SE of Mawlaik, Burma\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[94.8995,23.1329,134.76]},\"id\":\"us20005hqz\"},\n" +
                 "{\"type\":\"Feature\",\"properties\":{\"mag\":6.6,\"place\":\"42km WSW of Ashkasham, Afghanistan\",\"time\":1460284138660,\"updated\":1461326799686,\"tz\":270,\"url\":\"http://earthquake.usgs.gov/earthquakes/eventpage/us20005gsg\",\"detail\":\"http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us20005gsg.geojson\",\"felt\":117,\"cdi\":5.8,\"mmi\":4.41,\"alert\":\"green\",\"status\":\"reviewed\",\"tsunami\":0,\"sig\":738,\"net\":\"us\",\"code\":\"20005gsg\",\"ids\":\",us20005gsg,gcmt20160410102858,\",\"sources\":\",us,gcmt,\",\"types\":\",cap,dyfi,geoserve,impact-text,losspager,moment-tensor,nearby-cities,origin,phase-data,shakemap,tectonic-summary,\",\"nst\":null,\"dmin\":0.792,\"rms\":1.03,\"gap\":17,\"magType\":\"mww\",\"type\":\"earthquake\",\"title\":\"M 6.6 - 42km WSW of Ashkasham, Afghanistan\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[71.1357,36.4709,211.59]},\"id\":\"us20005gsg\"},\n" +
                 "{\"type\":\"Feature\",\"properties\":{\"mag\":6.7,\"place\":\"106km W of Sola, Vanuatu\",\"time\":1459999973790,\"updated\":1460152502000,\"tz\":660,\"url\":\"http://earthquake.usgs.gov/earthquakes/eventpage/us20005fzn\",\"detail\":\"http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us20005fzn.geojson\",\"felt\":2,\"cdi\":6.6,\"mmi\":5.17,\"alert\":\"green\",\"status\":\"reviewed\",\"tsunami\":1,\"sig\":692,\"net\":\"us\",\"code\":\"20005fzn\",\"ids\":\",at00o58v6w,us20005fzn,pt16098051,gcmt20160407033253,\",\"sources\":\",at,us,pt,gcmt,\",\"types\":\",cap,dyfi,geoserve,impact-link,losspager,moment-tensor,nearby-cities,origin,phase-data,shakemap,tectonic-summary,\",\"nst\":null,\"dmin\":6.775,\"rms\":0.93,\"gap\":25,\"magType\":\"mww\",\"type\":\"earthquake\",\"title\":\"M 6.7 - 106km W of Sola, Vanuatu\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[166.5711,-13.9942,26.79]},\"id\":\"us20005fzn\"}],\"bbox\":[-103.715,-16.0743,5.96,167.3926,36.4709,211.59]}")
-        list_quake.adapter = QuakeAdapter(this, list)
+        adapter = QuakeAdapter(this, ArrayList())
+        list_quake.adapter = adapter
+        updateQuakes(list)
+    }
+
+    fun updateQuakes(quakes: Array<QuakeModel>) {
+        adapter?.clear()
+        adapter?.addAll(quakes.toMutableList())
+        adapter?.notifyDataSetChanged()
     }
 }
