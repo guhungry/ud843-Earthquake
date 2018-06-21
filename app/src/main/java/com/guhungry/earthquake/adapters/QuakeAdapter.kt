@@ -18,7 +18,8 @@ class QuakeAdapter(context: Context, list: Array<QuakeModel>, private val viewId
 
         view.setTag(data)
         view.magnitude.text = data.magnitude.toString()
-        view.time.text = data.time.toString()
+        view.date.text = data.displayDate()
+        view.time.text = data.displayTime()
         return view
     }
 }
