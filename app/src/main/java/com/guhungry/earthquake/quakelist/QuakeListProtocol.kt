@@ -1,5 +1,6 @@
 package com.guhungry.earthquake.quakelist
 
+import android.content.Context
 import com.guhungry.earthquake.models.QuakeModel
 
 abstract class QuakeListProtocol {
@@ -17,6 +18,7 @@ abstract class QuakeListProtocol {
 
         fun requestQuakes()
         fun destroy()
+        fun showQuakeDetail(context: Context, url: String)
     }
 
     interface Interactor {
@@ -33,5 +35,6 @@ abstract class QuakeListProtocol {
 
     interface Router {
         fun presenter(view: View): QuakeListProtocol.Presenter
+        fun createQuakeDetail(context: Context, url: String)
     }
 }

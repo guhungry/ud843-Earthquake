@@ -5,7 +5,7 @@ import com.guhungry.earthquake.utils.DateUtils
 import com.guhungry.earthquake.utils.NumberUtils
 import java.util.*
 
-data class QuakeModel(private val place: String, val magnitude: Double, val time: Date) {
+data class QuakeModel(private val place: String, val magnitude: Double, val time: Date, val url: String) {
     lateinit var placeOf: String
     lateinit var placeMain: String
     private val PLACE_SEPERATOR = " of "
