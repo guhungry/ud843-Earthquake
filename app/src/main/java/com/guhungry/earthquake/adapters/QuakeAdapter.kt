@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.guhungry.earthquake.models.QuakeModel
-import kotlinx.android.synthetic.main.list_item_quake.view.*
+import kotlinx.android.synthetic.main.quake_list_item.view.*
 
 class QuakeAdapter(context: Context, private val viewId: Int, list: Array<QuakeModel>) : ArrayAdapter<QuakeModel>(context, viewId, list) {
     val inflater = LayoutInflater.from(context)

@@ -16,6 +16,6 @@ class MainActivity : AppCompatActivity() {
                 QuakeModel(magnitude = 2.5, place = "Bang Rak Noi", time = 200000),
                 QuakeModel(magnitude = 3.5, place = "LA", time = 300000)
         )
-        list_quake.adapter = QuakeAdapter(this, R.layout.list_item_quake, list)
+        list_quake.adapter = QuakeAdapter(this, R.layout.quake_list_item, list)
     }
 }
