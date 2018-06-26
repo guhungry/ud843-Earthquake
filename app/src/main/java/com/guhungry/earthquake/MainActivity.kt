@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), QuakeListProtocol.View {
     private fun setupQuakeList() {
         adapter = QuakeAdapter(this, arrayListOf())
         list_quake.adapter = adapter
+        list_quake.emptyView = empty_quake
         list_quake.setOnItemClickListener { adapterView, view, i, l ->
             val quake = view.tag as QuakeModel
 
