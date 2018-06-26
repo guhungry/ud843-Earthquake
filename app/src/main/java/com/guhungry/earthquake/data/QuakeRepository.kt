@@ -5,8 +5,10 @@ import com.androidnetworking.common.ANRequest
 
 class QuakeRepository {
     companion object {
-        fun getQuakes(): ANRequest<out ANRequest<*>>? {
-            return AndroidNetworking.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2014-01-01&endtime=2014-01-02&minmagnitude=1").build()
+        val URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=5&limit=10"
+
+        fun getQuakes(url: String): ANRequest<out ANRequest<*>>? {
+            return AndroidNetworking.get(url).build()
         }
     }
 }
