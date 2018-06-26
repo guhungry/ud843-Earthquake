@@ -9,6 +9,8 @@ abstract class QuakeListProtocol {
 
         fun onQuakesSuccess(quakes: ArrayList<QuakeModel>)
         fun onQuakesFailed()
+        fun showProgress()
+        fun hideProgress()
     }
 
     interface Presenter {

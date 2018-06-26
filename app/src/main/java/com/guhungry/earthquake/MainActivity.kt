@@ -2,6 +2,7 @@ package com.guhungry.earthquake
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.Toast
 import com.guhungry.earthquake.adapters.QuakeAdapter
 import com.guhungry.earthquake.models.QuakeModel
@@ -65,6 +66,14 @@ class MainActivity : AppCompatActivity(), QuakeListProtocol.View {
     override fun onQuakesFailed() {
         Toast.makeText(this, "Can't load quake data", Toast.LENGTH_LONG).show()
         setEmptyText()
+    }
+
+    override fun showProgress() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        progressBar.visibility = View.INVISIBLE
     }
 
     private fun setEmptyText() {

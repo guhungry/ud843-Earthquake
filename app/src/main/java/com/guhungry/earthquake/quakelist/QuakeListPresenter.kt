@@ -13,6 +13,7 @@ class QuakeListPresenter : QuakeListProtocol.Presenter, QuakeListProtocol.Intera
     // ///////////////////
     override fun requestQuakes() {
         interactor?.requestQuakes()
+        view?.showProgress()
     }
 
     override fun showQuakeDetail(context: Context, url: String) {
@@ -27,10 +28,12 @@ class QuakeListPresenter : QuakeListProtocol.Presenter, QuakeListProtocol.Intera
 
     // Interactor Output Interface
     override fun onQuakesSuccess(quakes: ArrayList<QuakeModel>) {
+        view?.hideProgress()
         view?.onQuakesSuccess(quakes)
     }
 
     override fun onQuakesFailed() {
+        view?.hideProgress()
         view?.onQuakesFailed()
     }
 }
