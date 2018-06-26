@@ -8,6 +8,7 @@ import com.guhungry.earthquake.models.QuakeModel
 import com.guhungry.earthquake.quakelist.QuakeListProtocol
 import com.guhungry.earthquake.quakelist.QuakeListRouter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.quake_list_empty.view.*
 
 class MainActivity : AppCompatActivity(), QuakeListProtocol.View {
     override var presenter: QuakeListProtocol.Presenter? = null
@@ -58,9 +59,15 @@ class MainActivity : AppCompatActivity(), QuakeListProtocol.View {
         adapter?.clear()
         adapter?.addAll(quakes.toMutableList())
         adapter?.notifyDataSetChanged()
+        setEmptyText()
     }
 
     override fun onQuakesFailed() {
         Toast.makeText(this, "Can't load quake data", Toast.LENGTH_LONG).show()
+        setEmptyText()
+    }
+
+    private fun setEmptyText() {
+        empty_quake.text.setText(R.string.no_earthquakes_found)
     }
 }
