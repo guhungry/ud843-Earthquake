@@ -2,7 +2,6 @@ package com.guhungry.earthquake
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.widget.Toast
 import com.guhungry.earthquake.adapters.QuakeAdapter
 import com.guhungry.earthquake.models.QuakeModel
@@ -31,6 +30,10 @@ class MainActivity : AppCompatActivity(), QuakeListProtocol.View {
     }
 
     private fun setupQuakeList() {
+        swipe_container.setOnRefreshListener {
+            presenter?.requestQuakes()
+        }
+
         adapter = QuakeAdapter(this, arrayListOf())
         list_quake.adapter = adapter
         list_quake.emptyView = empty_quake
@@ -69,11 +72,11 @@ class MainActivity : AppCompatActivity(), QuakeListProtocol.View {
     }
 
     override fun showProgress() {
-        progressBar.visibility = View.VISIBLE
+        swipe_container.isRefreshing = true
     }
 
     override fun hideProgress() {
-        progressBar.visibility = View.INVISIBLE
+        swipe_container.isRefreshing = false
     }
 
     private fun setEmptyText() {
