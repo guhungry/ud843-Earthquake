@@ -6,10 +6,13 @@ import android.net.NetworkInfo
 
 class NetworkUtils {
     companion object {
-        fun hasInternetConnection(context: Context): Boolean {
-            val connection = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val activeNetwork: NetworkInfo? = connection.activeNetworkInfo
-            return activeNetwork?.isConnectedOrConnecting == true
-        }
+        fun hasInternetConnection(context: Context): Boolean = activeNetwork(context)?.isConnectedOrConnecting == true
+
+        ///////////////////
+        // Helper Functions
+        // ////////////////
+        private fun activeNetwork(context: Context): NetworkInfo? = connectivityManager(context).activeNetworkInfo
+
+        private fun connectivityManager(context: Context): ConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 }
