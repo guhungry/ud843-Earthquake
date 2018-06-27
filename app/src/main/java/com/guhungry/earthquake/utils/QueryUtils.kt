@@ -32,7 +32,7 @@ class QueryUtils {
             return QuakeSettingModel(
                     minMagnitude = preferences.getString(R.string.settings_min_magnitude_key, R.string.settings_min_magnitude_label),
                     limit = preferences.getString(R.string.settings_limit_key, R.string.settings_limit_label),
-                    orderBy = "time")
+                    orderBy = preferences.getString(R.string.settings_order_by_key, R.string.settings_order_by_label))
         }
 
         // /////////////////////

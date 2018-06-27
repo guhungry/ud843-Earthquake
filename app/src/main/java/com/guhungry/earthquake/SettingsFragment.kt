@@ -1,11 +1,10 @@
 package com.guhungry.earthquake
 
 import android.os.Bundle
+import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.preference.PreferenceManager
-import android.content.SharedPreferences
-
 
 
 class SettingsFragment : PreferenceFragment(), Preference.OnPreferenceChangeListener {
@@ -13,6 +12,7 @@ class SettingsFragment : PreferenceFragment(), Preference.OnPreferenceChangeList
         super.onCreate(savedInstanceState)
 
         addPreferencesFromResource(R.xml.settings_main)
+        bindPreferenceSummaryToValue(findPreference(R.string.settings_order_by_key))
         bindPreferenceSummaryToValue(findPreference(R.string.settings_min_magnitude_key))
         bindPreferenceSummaryToValue(findPreference(R.string.settings_limit_key))
     }
@@ -31,7 +31,13 @@ class SettingsFragment : PreferenceFragment(), Preference.OnPreferenceChangeList
     // OnPreferenceChangeListener
     // //////////////////////////
     override fun onPreferenceChange(preference: Preference?, value: Any?): Boolean {
-        preference?.summary = value.toString()
+        preference?.summary = when {
+            preference is ListPreference -> {
+                val index = preference.findIndexOfValue(value.toString())
+                if (index >= 0) preference.entries[index] else ""
+            }
+            else -> value.toString()
+        }
         return true
     }
 
