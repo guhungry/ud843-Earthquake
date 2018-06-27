@@ -1,8 +1,7 @@
 package com.guhungry.earthquake
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceFragment
+import android.support.v7.app.AppCompatActivity
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

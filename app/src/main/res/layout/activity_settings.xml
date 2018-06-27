@@ -9,6 +9,5 @@
         android:id="@+id/settings"
         android:name="com.guhungry.earthquake.SettingsFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_settings" />
+        android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>
