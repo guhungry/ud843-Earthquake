@@ -32,10 +32,7 @@ class SettingsFragment : PreferenceFragment(), Preference.OnPreferenceChangeList
     // //////////////////////////
     override fun onPreferenceChange(preference: Preference?, value: Any?): Boolean {
         preference?.summary = when {
-            preference is ListPreference -> {
-                val index = preference.findIndexOfValue(value.toString())
-                if (index >= 0) preference.entries[index] else ""
-            }
+            preference is ListPreference -> preference.findEntryByValue(value.toString())
             else -> value.toString()
         }
         return true
