@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import com.guhungry.earthquake.models.QuakeModel
 import com.guhungry.earthquake.utils.NetworkUtils
+import com.guhungry.earthquake.utils.QueryUtils
 
 class QuakeListPresenter : QuakeListProtocol.Presenter, QuakeListProtocol.InteractorOutput {
     override var view: QuakeListProtocol.View? = null
@@ -14,8 +15,10 @@ class QuakeListPresenter : QuakeListProtocol.Presenter, QuakeListProtocol.Intera
     // Presenter Interface
     // ///////////////////
     override fun requestQuakes() {
-        if (NetworkUtils.hasInternetConnection((view as Activity).baseContext)) {
-            interactor?.requestQuakes()
+        val context = (view as Activity).baseContext
+        if (NetworkUtils.hasInternetConnection(context)) {
+            val url = QueryUtils.url(QueryUtils.settingsFromPreferences(context))
+            interactor?.requestQuakes(url)
             view?.showProgress()
         } else {
             println("No internet connection")

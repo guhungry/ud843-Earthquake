@@ -27,7 +27,7 @@ abstract class QuakeListProtocol {
     interface Interactor {
         var presenter: InteractorOutput?
 
-        fun requestQuakes()
+        fun requestQuakes(url: String)
         fun destroy()
     }
 

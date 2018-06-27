@@ -12,8 +12,8 @@ class QuakeListInteractor : QuakeListProtocol.Interactor {
     override var presenter: QuakeListProtocol.InteractorOutput? = null
     private var task: ANRequest<out ANRequest<*>>? = null
 
-    override fun requestQuakes() {
-        task = QuakeRepository.getQuakes(QuakeRepository.url(setting()))?.apply {
+    override fun requestQuakes(url: String) {
+        task = QuakeRepository.getQuakes(url)?.apply {
             getAsJSONObject(listener)
         }
     }
@@ -35,6 +35,4 @@ class QuakeListInteractor : QuakeListProtocol.Interactor {
             presenter?.onQuakesFailed()
         }
     }
-
-    private fun setting(): QuakeSettingModel = QueryUtils.settingsFromPreferences()
 }
