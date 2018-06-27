@@ -1,7 +1,6 @@
 package com.guhungry.earthquake.utils
 
 import com.guhungry.earthquake.models.QuakeModel
-import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
