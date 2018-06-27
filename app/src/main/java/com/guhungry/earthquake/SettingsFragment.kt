@@ -14,6 +14,7 @@ class SettingsFragment : PreferenceFragment(), Preference.OnPreferenceChangeList
 
         addPreferencesFromResource(R.xml.settings_main)
         bindPreferenceSummaryToValue(findPreference(R.string.settings_min_magnitude_key))
+        bindPreferenceSummaryToValue(findPreference(R.string.settings_limit_key))
     }
 
     fun findPreference(key: Int): Preference = findPreference(getString(key))
