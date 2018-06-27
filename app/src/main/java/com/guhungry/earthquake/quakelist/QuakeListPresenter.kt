@@ -27,6 +27,10 @@ class QuakeListPresenter : QuakeListProtocol.Presenter, QuakeListProtocol.Intera
         router?.createQuakeDetail(context, url)
     }
 
+    override fun showSettingsScreen(context: Context) {
+        router?.createSettingScreen(context)
+    }
+
     override fun destroy() {
         view = null
         interactor = null

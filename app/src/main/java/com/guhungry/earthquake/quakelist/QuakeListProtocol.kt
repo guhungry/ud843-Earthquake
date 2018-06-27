@@ -21,6 +21,7 @@ abstract class QuakeListProtocol {
         fun requestQuakes()
         fun destroy()
         fun showQuakeDetail(context: Context, url: String)
+        fun showSettingsScreen(context: Context)
     }
 
     interface Interactor {
@@ -38,5 +39,6 @@ abstract class QuakeListProtocol {
     interface Router {
         fun presenter(view: View): QuakeListProtocol.Presenter
         fun createQuakeDetail(context: Context, url: String)
+        fun createSettingScreen(context: Context)
     }
 }

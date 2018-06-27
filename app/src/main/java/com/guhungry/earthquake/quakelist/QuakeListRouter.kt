@@ -3,11 +3,16 @@ package com.guhungry.earthquake.quakelist
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import com.guhungry.earthquake.SettingsActivity
 
 class QuakeListRouter {
     companion object : QuakeListProtocol.Router {
         override fun createQuakeDetail(context: Context, url: String) {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        }
+
+        override fun createSettingScreen(context: Context) {
+            context.startActivity(Intent(context, SettingsActivity::class.java))
         }
 
         override fun presenter(view: QuakeListProtocol.View): QuakeListProtocol.Presenter {
