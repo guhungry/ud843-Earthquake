@@ -1,11 +1,16 @@
 package com.guhungry.earthquake.utils
 
 import com.guhungry.earthquake.models.QuakeModel
+import com.guhungry.earthquake.models.QuakeSettingModel
 import org.json.JSONObject
 import java.util.*
 
 class QueryUtils {
     companion object {
+        fun settingsFromPreferences(): QuakeSettingModel {
+            return QuakeSettingModel(minMagnitude = "2", limit = "10", orderBy = "time")
+        }
+
         fun extractQuakes(json: JSONObject): ArrayList<QuakeModel> {
             val result = arrayListOf<QuakeModel>()
             val quakes = json.optJSONArray("features")
